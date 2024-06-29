@@ -1,0 +1,123 @@
+/* General styles and layout */
+//* {
+//  background: #000 url(//cssanimation.rocks/demo/starwars/images/bg.jpg) no-repeat center fixed;
+//  background-size: cover;
+//}
+
+.starwars-demo {
+  perspective: 800px;
+  transform-style: preserve-3d;
+  height: 17em;
+  left: 50%;
+  position: absolute;
+  top: 53%;
+  transform: translate(-50%, -50%);
+  width: 34em;
+
+  @media only screen and (max-width: 600px) {
+    font-size: 10px;
+  }
+
+  @media only screen and (max-width: 480px) {
+    font-size: 7px;
+  }
+
+  .star, .wars, .byline {
+    position: absolute;
+  }
+
+  .star {
+    top: -0.75em;
+    animation: star 6s ease-out infinite;
+  }
+
+  .wars {
+    bottom: -0.5em;
+    animation: wars 6s ease-out infinite;
+  }
+
+  .byline {
+    color: #fff;
+    font-family: "ITC Serif Gothic", Lato, serif;
+    font-size: 2.25em;
+    left: -2em;
+    letter-spacing: 0.4em;
+    right: -2em;
+    text-align: center;
+    text-transform: uppercase;
+    top: 39%;
+    animation: move-byline 6s linear infinite;
+
+    span {
+      display: inline-block;
+      animation: spin-letters 6s linear infinite;
+    }
+  }
+}
+
+img {
+  width: 100%;
+}
+
+/* Animation properties */
+@keyframes star {
+  0% {
+    opacity: 0;
+    transform: scale(1.5) translateY(-0.75em);
+  }
+  20% {
+    opacity: 1;
+  }
+  89% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateZ(-1000em);
+  }
+}
+
+@keyframes wars {
+  0% {
+    opacity: 0;
+    transform: scale(1.5) translateY(0.5em);
+  }
+  20% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateZ(-1000em);
+  }
+}
+
+@keyframes spin-letters {
+  0%, 10% {
+    opacity: 0;
+    transform: rotateY(90deg);
+  }
+  30% {
+    opacity: 1;
+  }
+  70%, 86% {
+    transform: rotateY(0);
+    opacity: 1;
+  }
+  95%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes move-byline {
+  0% {
+    transform: translateZ(5em);
+  }
+  100% {
+    transform: translateZ(0);
+  }
+}
