@@ -1,42 +1,27 @@
-# Coding Challenge [SWE] @ Memberspot
+# Swe
 
-## Incentive
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.6.
 
-This task will cover a few core concepts that you will encounter when working on a TypeScript project at Memberspot.
+## Development server
 
-## Challenge
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-Write a small application that fetches data from an API (we recommend [this one](https://www.swapi.tech/documentation)) and displays it in a paginated list.
+## Code scaffolding
 
-### Requirements
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-1. Display a list of data with at least 4 fields.
-   1. The list should include at least 1 aggregated value.
-   2. For the [example API](https://www.swapi.tech/documentation), display a person's _name_, _birth_year_, _homeworld_, and the homeworld's _terrain_.
-2. Implement an input above the list to **case insensitively** filter the data.
-3. The list should be paginated, with a page size of 10. (_Lazy loading_ is preferred over traditional pagination).
-4. Have some fun and be creative!
+## Build
 
-### Notes and Hints
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-0. You are free to choose any technology you want, but...
-1. Our company has a decided tech stack:
-   1. Angular for client-side apps.
-   2. NestJS for server-side apps.
-   3. Tailwind CSS.
-2. Use an API.
-   1. If it is public, try to **cache** your data and make **as few requests** as possible.
-   2. Feel free to build your own.
-3. If you want to mock a database, use a JSON file and load it into memory.
-4. Please use `strict` mode in your tsconfig.
+## Running unit tests
 
-### Submitting
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-1. Fork this repo and send us your solutions.
-2. Notify Memberspot.
+## Running end-to-end tests
 
-## Alternatives
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-If you do not have time for a take-home assignment, let us know! In this case, we would try to implement parts of it live in a technical interview.
+## Further help
 
-If you have a project to which you contribute regularly, we can also discuss that. We are interested in your work.
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
