@@ -1,4 +1,34 @@
-/* You can add global styles to this file, and also import other style files */
+// tailwind
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+// base
+@import 'scss/base/fonts';
+
+// material
+@import 'scss/material/components', 'scss/material/theme-color';
+
+@layer base {
+  body {
+    @apply tw-m-0;
+    @apply tw-text-text;
+    @apply tw-text-[18px];
+    @apply tw-overflow-x-hidden;
+    @apply tw-scroll-smooth;
+  }
+
+  h1 {
+    @apply tw-text-[34px];
+    @apply tw-font-bold;
+  }
+
+  h2 {
+    @apply tw-text-[28px];
+    @apply tw-font-semibold;
+  }
+
+  h3 {
+    @apply tw-text-[26px];
+  }
+}
