@@ -1,0 +1,14 @@
+// unfortunately tailwind doesnt overwrite material stylings
+// class="tw-bg-text tw-text-white"
+// use @apply here because the color is from tailwind
+a[mat-button] {
+  @apply tw-px-[15px];
+
+  + a {
+    @apply tw-ml-[15px];
+  }
+}
+
+.active {
+  @apply tw-bg-text tw-text-white #{!important};
+}

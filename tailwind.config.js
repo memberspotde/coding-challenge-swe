@@ -13,16 +13,27 @@ module.exports = {
       xl: '1500px',
     },
     colors: {
-      'primary': '#09f',
-      'secondary': '#00ae00',
-      'text': '#323232',
-      'black': '#000',
-      'white': '#fff',
-      'error': '#f00',
+      primary: '#fce0dd',
+      secondary: '#f9e4f5',
+      tertiary: '#f5f6fa',
+      text: '#323232',
+      black: '#000',
+      white: '#fff',
+      error: '#f00',
     },
     fontFamily: {
       sans: ['Asap', 'sans-serif'] // sans class => global default family
     },
+    fontSize: {
+      sm: '14px',
+      base: '18px',
+      lg: '26px',
+      xl: '28px',
+      '2xl': '48px',
+    },
+    padding: {
+      frame: '50px'
+    }
   },
   plugins: [],
 }

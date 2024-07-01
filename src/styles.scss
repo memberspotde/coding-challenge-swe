@@ -13,22 +13,22 @@
   body {
     @apply tw-m-0;
     @apply tw-text-text;
-    @apply tw-text-[18px];
+    @apply tw-text-base;
     @apply tw-overflow-x-hidden;
     @apply tw-scroll-smooth;
   }
 
   h1 {
-    @apply tw-text-[34px];
+    @apply tw-text-2xl;
     @apply tw-font-bold;
   }
 
   h2 {
-    @apply tw-text-[28px];
+    @apply tw-text-xl;
     @apply tw-font-semibold;
   }
 
   h3 {
-    @apply tw-text-[26px];
+    @apply tw-text-lg;
   }
 }

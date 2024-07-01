@@ -1,0 +1,25 @@
+<nav class="tw-flex tw-justify-between tw-px-frame tw-py-[20px]">
+  <div class="tw-flex tw-items-center">
+    <img
+      class="tw-mr-[5px]"
+      ngSrc="images/logo.webp"
+      alt="logo"
+      width="50"
+      height="30" />
+    <a routerLink="home" class="tw-text-lg" aria-label="pagination app"
+      >Pagination App</a
+    >
+  </div>
+
+  <div class="tw-flex tw-items-center">
+    @for (route of mainRoutes; track route.routeName) {
+      <a
+        mat-button
+        [routerLink]="route.routeName"
+        routerLinkActive="active"
+        [attr.aria-label]="route.displayName"
+        >{{ route.displayName }}</a
+      >
+    }
+  </div>
+</nav>
