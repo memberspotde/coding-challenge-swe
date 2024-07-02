@@ -2,10 +2,10 @@
 // class="tw-bg-text tw-text-white"
 // use @apply here because the color is from tailwind
 a[mat-button] {
-  @apply tw-px-[15px];
+  @apply tw-px-15;
 
   + a {
-    @apply tw-ml-[15px];
+    @apply tw-ml-15;
   }
 }
 

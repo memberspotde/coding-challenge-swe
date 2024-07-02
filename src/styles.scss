@@ -9,26 +9,65 @@
 // material
 @import 'scss/material/components', 'scss/material/theme-color';
 
+// layer directive is used to explicitly specify which part of your stylesheet certain styles should be added to, also
+// lazy-loading styles. It won't be included in compiled CSS unless it is actually used.
+// Without layer directive, it will always be included in compiled CSS. E.g. .card class is always compiled
+// without apply directive, tailwind css cannot be integrated. Tailwind syntax is invalid
 @layer base {
+  html {
+    // tailwind uses rem. 1rem = 16px(font size) almost in every browser.
+    // rem relative to root.
+    // em relative to parent.
+    font-size: 16px; // default font size and 1rem definition. No @apply used here because not in tailwind syntax
+    // note: changing default font-size in html also means that changing rem in other css properties,
+    // e.g. p-1 0.25 rem is 4.5px padding when font size is set to 18px in html. Default is 4px (16px font-size)
+    @apply md:tw-text-[18px];
+  }
+
   body {
+    // default font family is preset in tailwind.config.js
     @apply tw-m-0;
-    @apply tw-text-text;
-    @apply tw-text-base;
+    @apply tw-text-text; // default text-color
+    @apply tw-text-base; // default font size
     @apply tw-overflow-x-hidden;
     @apply tw-scroll-smooth;
   }
 
   h1 {
-    @apply tw-text-2xl;
+    @apply tw-text-5xl;
     @apply tw-font-bold;
   }
 
   h2 {
-    @apply tw-text-xl;
+    @apply tw-text-4xl;
     @apply tw-font-semibold;
   }
 
   h3 {
-    @apply tw-text-lg;
+    @apply tw-text-2xl;
+    @apply tw-font-semibold;
+  }
+}
+
+// Use the components layer to style reusable UI components that are used multiple times across project
+@layer components {
+  .frame-x {
+    @apply tw-px-20 md:tw-px-50;
+  }
+
+  .cards-container {
+    @apply frame-x tw-grid tw-grid-cols-1 sm:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-20 lg:tw-gap-50;
+  }
+
+  .card {
+    @apply tw-border-2 tw-border-gray tw-rounded-lg tw-p-30 hover:tw-shadow-lg;
+  }
+
+  .gradient-background {
+    @apply tw-bg-gradient-to-tr tw-from-secondary tw-via-tertiary tw-to-primary;
+  }
+
+  .hidden {
+    @apply tw-hidden;
   }
 }

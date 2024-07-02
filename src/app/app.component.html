@@ -1,3 +1,33 @@
-<app-header></app-header>
+<app-header
+  [isRouteMenuToggled]="isMenuOpen"
+  (onToggleMenu)="toggleMenu($event)"></app-header>
 
-<router-outlet></router-outlet>
+<main class="tw-py-hh">
+  <router-outlet></router-outlet>
+</main>
+
+<!--tw-inset-0-->
+<div
+  class="tw-bg-tertiary tw-fixed tw-top-hh tw-bottom-0 tw-left-0 tw-right-0 tw-z-50"
+  [class.hidden]="!isMenuOpen">
+  <div class="tw-flex tw-flex-col tw-px-20 tw-py-30">
+    <a
+      class="nav"
+      routerLink="/home"
+      routerLinkActive="active"
+      aria-label="Home"
+      (click)="closeMenu()">
+      Home
+    </a>
+    @for (route of mainRoutes; track route.routeName) {
+      <a
+        class="nav"
+        [routerLink]="'/' + route.routeName"
+        routerLinkActive="active"
+        [attr.aria-label]="route.displayName"
+        (click)="closeMenu()"
+        >{{ route.displayName }}</a
+      >
+    }
+  </div>
+</div>

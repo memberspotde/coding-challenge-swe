@@ -1,25 +1,39 @@
-<nav class="tw-flex tw-justify-between tw-px-frame tw-py-[20px]">
+<nav
+  class="tw-bg-white tw-fixed tw-w-full tw-flex tw-justify-between tw-items-center frame-x tw-py-20">
   <div class="tw-flex tw-items-center">
     <img
-      class="tw-mr-[5px]"
+      class="tw-mr-5"
       ngSrc="images/logo.webp"
+      aria-label="Pagination App Logo"
       alt="logo"
       width="50"
-      height="30" />
-    <a routerLink="home" class="tw-text-lg" aria-label="pagination app"
+      height="50" />
+    <a
+      [routerLink]="(isMobile$ | async) ? null : '/home'"
+      class="tw-text-lg"
+      aria-label="pagination app"
       >Pagination App</a
     >
   </div>
 
-  <div class="tw-flex tw-items-center">
-    @for (route of mainRoutes; track route.routeName) {
-      <a
-        mat-button
-        [routerLink]="route.routeName"
-        routerLinkActive="active"
-        [attr.aria-label]="route.displayName"
-        >{{ route.displayName }}</a
-      >
-    }
-  </div>
+  @if (isMobile$ | async; as isMobile) {
+    <mat-icon
+      class="tw-cursor-pointer"
+      aria-hidden="false"
+      [attr.aria-label]="isRouteMenuToggled() ? 'close' : 'menu'"
+      [fontIcon]="isRouteMenuToggled() ? 'close' : 'menu'"
+      (click)="toggleMenu()"></mat-icon>
+  } @else {
+    <div>
+      @for (route of mainRoutes; track route.routeName) {
+        <a
+          mat-button
+          [routerLink]="route.routeName"
+          routerLinkActive="active"
+          [attr.aria-label]="route.displayName"
+          >{{ route.displayName }}</a
+        >
+      }
+    </div>
+  }
 </nav>

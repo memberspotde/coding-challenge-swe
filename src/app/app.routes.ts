@@ -1,5 +1,12 @@
 import { Routes } from '@angular/router';
-import { MainRoutesEnum } from './shared/utilities';
+import { MainRoutesEnum, sWCharsResolver } from './shared/utilities';
+import { provideEffects } from '@ngrx/effects';
+import { provideState } from '@ngrx/store';
+import { SWCharactersEffects } from './_store/features/sw-characters/sw-characters.effects';
+import {
+  sWCharactersFeatureKey,
+  sWCharactersReducer,
+} from './_store/features/sw-characters/sw-characters.reducer';
 
 export const routes: Routes = [
   {
@@ -14,6 +21,11 @@ export const routes: Routes = [
   },
   {
     path: MainRoutesEnum.starwars,
+    providers: [
+      provideEffects(SWCharactersEffects),
+      provideState(sWCharactersFeatureKey, sWCharactersReducer),
+    ],
+    resolve: { currPage: sWCharsResolver },
     loadComponent: () =>
       import('./sw-api/sw-api.component').then((x) => x.SwApiComponent),
   },
