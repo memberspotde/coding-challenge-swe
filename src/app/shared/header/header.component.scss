@@ -12,3 +12,7 @@ a[mat-button] {
 .active {
   @apply tw-bg-text tw-text-white #{!important};
 }
+
+.menu {
+  @apply tw-flex tw-items-center tw-justify-center tw-w-50 tw-h-50 tw-text-[35px];
+}

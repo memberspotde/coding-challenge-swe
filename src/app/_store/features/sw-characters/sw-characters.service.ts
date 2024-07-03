@@ -3,6 +3,7 @@ import { forkJoin, map, Observable, switchMap, take } from 'rxjs';
 import {
   SWCharacter,
   SWCharacterResp,
+  SWCharacterSearchResp,
   SWCharactersPageResp,
 } from './sw-characters.model';
 
@@ -15,11 +16,9 @@ import { environment } from '../../../../enviroment/environment';
 export class SWCharactersService {
   private httpClient = inject(HttpClient);
   baseUrl = environment.baseUrl;
-  path = environment.getPaginatedSWCharsPath + '2323';
+  path = environment.getPaginatedSWCharsPath;
 
-  requestPaginatedSWCharacters(
-    page: number
-  ): Observable<{
+  requestPaginatedSWCharacters(page: number): Observable<{
     total_pages: number;
     total_records: number;
     chars: SWCharacter[];
@@ -53,5 +52,20 @@ export class SWCharactersService {
         description: charResp.result.description,
       }))
     );
+  }
+
+  searchSWCharactersByName(name: string): Observable<SWCharacter[]> {
+    return this.httpClient
+      .get<SWCharacterSearchResp>(this.baseUrl + this.path, {
+        params: { name },
+      })
+      .pipe(
+        map((resp) =>
+          resp.result.map((e) => ({
+            ...e.properties,
+            description: e.description,
+          }))
+        )
+      );
   }
 }

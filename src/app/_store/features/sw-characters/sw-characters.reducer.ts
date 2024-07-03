@@ -25,6 +25,10 @@ const reducer = createReducer(
     ...state,
     loading: true,
   })),
+  on(SWCharactersActions.cancelLoading, (state) => ({
+    ...state,
+    loading: false,
+  })),
   on(
     SWCharactersActions.setPaginatedSWCharacters,
     (state, { pageId, total_pages, total_records, chars }) => {

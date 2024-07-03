@@ -32,3 +32,13 @@ export const selectSWCharactersCurrentPage = createSelector(
   selectSWCharactersState,
   (state: SWCharactersState) => state.currentPage
 );
+
+export const selectSWCharactersTotalPages = createSelector(
+  selectSWCharactersState,
+  (state: SWCharactersState) => state.total_pages
+);
+
+export const selectSWCharactersTotalRecords = createSelector(
+  selectSWCharactersState,
+  (state: SWCharactersState) => state.total_records
+);

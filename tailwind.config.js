@@ -23,10 +23,12 @@ module.exports = {
         secondary: '#f9e4f5',
         tertiary: '#f5f6fa',
         text: '#323232',
+        'light-blue': '#EFF6FF',
         gray: '#cccccc',
         black: '#000',
         white: '#fff',
         error: '#f00',
+        'dark-primary': '#ffcc66',
       },
       fontFamily: {
         sans: ['Asap', 'sans-serif'] // sans class => global default family. See style.scss -> body

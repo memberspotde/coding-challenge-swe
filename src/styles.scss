@@ -3,11 +3,12 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-// base
-@import 'scss/base/fonts';
-
 // material
 @import 'scss/material/components', 'scss/material/theme-color';
+
+// miscellaneous
+@import 'scss/fonts';
+@import 'scss/mixins';
 
 // layer directive is used to explicitly specify which part of your stylesheet certain styles should be added to, also
 // lazy-loading styles. It won't be included in compiled CSS unless it is actually used.
@@ -31,6 +32,8 @@
     @apply tw-text-base; // default font size
     @apply tw-overflow-x-hidden;
     @apply tw-scroll-smooth;
+    @apply tw-hyphens-auto;
+    @apply tw-break-words;
   }
 
   h1 {
@@ -68,6 +71,6 @@
   }
 
   .hidden {
-    @apply tw-hidden;
+    @apply tw-invisible;
   }
 }

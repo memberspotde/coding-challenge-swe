@@ -1,0 +1,15 @@
+.mat-icon {
+  @apply tw-w-50 tw-h-50 tw-text-[50px] tw-cursor-pointer hover:tw-shadow-lg tw-rounded-full tw-bg-light-blue;
+}
+
+.hide-on-mobile {
+  @apply tw-hidden md:tw-flex;
+}
+
+.page {
+  @apply tw-justify-center tw-items-center tw-w-50 tw-h-50 tw-cursor-pointer hover:tw-shadow-lg tw-rounded-full tw-bg-tertiary;
+}
+
+.selected {
+  @apply tw-bg-dark-primary tw-border-2 tw-border-gray;
+}

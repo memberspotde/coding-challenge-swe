@@ -23,20 +23,7 @@ export interface SWCharacter {
   hair_color: string;
   skin_color: string;
   eye_color: string;
-  homeWorld: string;
-  homeWorldDetails: HomeWorld | null;
-}
-
-export interface HomeWorld {
-  name: string;
-  diameter: string;
-  rotation_period: string;
-  orbital_period: string;
-  gravity: string;
-  population: string;
-  climate: string;
-  terrain: string;
-  surface_water: string;
+  homeworld: string;
 }
 
 export interface SWCharactersPageResp {
@@ -52,8 +39,9 @@ export interface SWCharacterResp {
   };
 }
 
-export interface HomeWorldResp {
+export interface SWCharacterSearchResp {
   result: {
-    properties: HomeWorld;
-  };
+    properties: SWCharacter;
+    description: string;
+  }[];
 }

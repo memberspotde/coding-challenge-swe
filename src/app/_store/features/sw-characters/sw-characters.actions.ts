@@ -6,6 +6,8 @@ export const loadingPaginatedSWCharacters = createAction(
   '[SWCharacters/API] Loading Paginated SWCharacters'
 );
 
+export const cancelLoading = createAction('[SWCharacters] Cancel Loading');
+
 export const requestPaginatedSWCharacters = createAction(
   '[SWCharacters/API] Request Paginated SWCharacters',
   props<{ pageId: number }>()

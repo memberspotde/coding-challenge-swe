@@ -1,0 +1,27 @@
+@if (!!homeWorld) {
+  <div>
+    <div class="tw-mb-10">{{ homeWorld!.name }}</div>
+    <div>Diameter: {{ homeWorld!.diameter }}</div>
+    <div>Rotation period: {{ homeWorld!.rotation_period }}</div>
+    <div>Orbital period: {{ homeWorld!.orbital_period }}</div>
+    <div>Gravity: {{ homeWorld!.gravity }}</div>
+    <div>Population: {{ homeWorld!.population }}</div>
+    <div>Climate: {{ homeWorld!.climate }}</div>
+    <div>Terrain: {{ homeWorld!.terrain }}</div>
+    <div>Surface Water: {{ homeWorld!.surface_water }}</div>
+  </div>
+} @else {
+  <div>Loading planet...</div>
+}
+
+<!--<div>-->
+<!--  <div class="tw-mb-10">{{homeWorld?.name}}</div>-->
+<!--  <div>Diameter: {{homeWorld?.diameter}}</div>-->
+<!--  <div>Rotation period: {{homeWorld?.rotation_period}}</div>-->
+<!--  <div>Orbital period: {{homeWorld?.orbital_period}}</div>-->
+<!--  <div>Gravity: {{homeWorld?.gravity}}</div>-->
+<!--  <div>Population: {{homeWorld?.population}}</div>-->
+<!--  <div>Climate: {{homeWorld?.climate}}</div>-->
+<!--  <div>Terrain: {{homeWorld?.terrain}}</div>-->
+<!--  <div>Surface Water: {{homeWorld?.surface_water}}</div>-->
+<!--</div>-->

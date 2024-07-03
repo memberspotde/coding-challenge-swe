@@ -34,11 +34,13 @@ function getRouteData(routeEnum: MainRoutesEnum, isName = true): string {
 
     case MainRoutesEnum.nest:
       return isName
-        ? 'Nest API'
-        : 'Consuming API from a Nest app. This app has to be served locally in the first place.';
+        ? 'Excepteur Sint'
+        : 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.';
 
     case MainRoutesEnum.mock:
-      return isName ? 'Mock Data' : 'Consuming data from a mock json file.';
+      return isName
+        ? 'Lorem Ipsum'
+        : 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
   }
 }
 

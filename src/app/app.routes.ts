@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { MainRoutesEnum, sWCharsResolver } from './shared/utilities';
+import { MainRoutesEnum } from './shared/utilities';
 import { provideEffects } from '@ngrx/effects';
 import { provideState } from '@ngrx/store';
 import { SWCharactersEffects } from './_store/features/sw-characters/sw-characters.effects';
@@ -7,6 +7,11 @@ import {
   sWCharactersFeatureKey,
   sWCharactersReducer,
 } from './_store/features/sw-characters/sw-characters.reducer';
+import { HomeWorldEffects } from './_store/features/home-world/home-world.effects';
+import {
+  HomeWorldFeatureKey,
+  homeWorldReducer,
+} from './_store/features/home-world/home-world.reducer';
 
 export const routes: Routes = [
   {
@@ -24,8 +29,10 @@ export const routes: Routes = [
     providers: [
       provideEffects(SWCharactersEffects),
       provideState(sWCharactersFeatureKey, sWCharactersReducer),
+      provideEffects(HomeWorldEffects),
+      provideState(HomeWorldFeatureKey, homeWorldReducer),
     ],
-    resolve: { currPage: sWCharsResolver },
+    // resolve: { currPage: sWCharsResolver },
     loadComponent: () =>
       import('./sw-api/sw-api.component').then((x) => x.SwApiComponent),
   },

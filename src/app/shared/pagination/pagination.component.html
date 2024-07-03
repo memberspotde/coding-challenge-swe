@@ -1,0 +1,58 @@
+<nav
+  class="tw-fixed tw-bottom-0 tw-left-0 tw-right-0 tw-flex tw-justify-center tw-items-center tw-gap-10 tw-py-20 tw-z-40">
+  <mat-icon
+    [class.hidden]="currentPage() === 1"
+    aria-hidden="false"
+    aria-label="first"
+    fontIcon="keyboard_double_arrow_left"
+    (click)="navigate(1)"></mat-icon>
+  <mat-icon
+    [class.hidden]="currentPage() === 1"
+    aria-hidden="false"
+    aria-label="previous"
+    fontIcon="chevron_left"
+    (click)="navigate(prevPageNum())"></mat-icon>
+  <button
+    aria-label="before previous page"
+    class="page hide-on-mobile"
+    [class.hidden]="beforePrevPageNum() < 1"
+    (click)="navigate(beforePrevPageNum())">
+    {{ beforePrevPageNum() }}
+  </button>
+  <button
+    aria-label="previous page"
+    class="page hide-on-mobile"
+    [class.hidden]="prevPageNum() < 1"
+    (click)="navigate(prevPageNum())">
+    {{ prevPageNum() }}
+  </button>
+  <button aria-label="current page" class="page selected">
+    {{ currentPage() }}
+  </button>
+  <button
+    aria-label="next page"
+    class="page hide-on-mobile"
+    [class.hidden]="nextPageNum() > totalPages()"
+    (click)="navigate(nextPageNum())">
+    {{ nextPageNum() }}
+  </button>
+  <button
+    aria-label="after next page"
+    class="page hide-on-mobile"
+    [class.hidden]="afterNextPageNum() > totalPages()"
+    (click)="navigate(afterNextPageNum())">
+    {{ afterNextPageNum() }}
+  </button>
+  <mat-icon
+    [class.hidden]="currentPage() === totalPages() || totalPages() === 0"
+    aria-hidden="false"
+    aria-label="next"
+    fontIcon="chevron_right"
+    (click)="navigate(nextPageNum())"></mat-icon>
+  <mat-icon
+    [class.hidden]="currentPage() === totalPages() || totalPages() === 0"
+    aria-hidden="false"
+    aria-label="last"
+    fontIcon="keyboard_double_arrow_right"
+    (click)="navigate(totalPages())"></mat-icon>
+</nav>

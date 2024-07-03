@@ -1,1 +1,123 @@
-<p>sw-api works!</p>
+@if (loading$ | async) {
+  <div
+    class="tw-fixed tw-inset-0 tw-flex tw-items-center tw-justify-center tw-bg-gray tw-bg-opacity-50 tw-z-50">
+    <mat-spinner></mat-spinner>
+  </div>
+}
+
+<h1 class="tw-mb-50 tw-text-center">Star Wars API</h1>
+
+<section class="tw-mb-50">
+  <h2 class="tw-mb-30">API Consumption Description</h2>
+
+  <p>
+    Paginated Person List is retrieved from
+    https://www.swapi.tech/api/people/?page=1&limit=10. A list of persons along
+    with pagination metadata will be obtained.
+  </p>
+
+  <div class="tw-font-semibold tw-mb-20">-- Lazy Loading --</div>
+
+  <p>
+    For each person entry object in the list, the detail of the person is
+    further retrieved from the given url in the object, e.g.
+    https://www.swapi.tech/api/people/1.
+  </p>
+
+  <div class="tw-font-semibold tw-mb-20">
+    -- Eager loading based on current page --
+  </div>
+
+  <p>
+    The retrieved detailed person object has a property called homeworld. This
+    url is used to get the detail of the person's homeworld. e.g.
+    https://swapi.dev/api/planets/1/.
+  </p>
+
+  <div class="tw-font-semibold tw-mb-20">-- Deferred Loading --</div>
+
+  <p>
+    *Loaded request data is cached in the store. Only search result is not
+    cached.
+  </p>
+</section>
+
+<section class="tw-flex tw-flex-col tw-items-center">
+  <h2 class="tw-mb-30">Characters</h2>
+
+  @if (error$ | async; as errResp) {
+    <div class="tw-mb-30 tw-text-error">
+      Request Failure: {{ errResp.message }}
+    </div>
+  } @else {
+    <div
+      class="tw-flex tw-items-center tw-justify-center tw-flex-wrap tw-gap-5">
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          placeholder="Search name"
+          [formControl]="searchCtrl"
+          (keyup.enter)="search()" />
+      </mat-form-field>
+      @if (searchString || searchMode) {
+        <div class="tw-mb-[28px]">
+          <button mat-icon-button aria-label="search" (click)="search()">
+            <mat-icon>search</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="Clear" (click)="clear()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      }
+    </div>
+
+    @if (!!characters) {
+      @if (characters.length > 0) {
+        <div class="cards-container tw-px-0">
+          @for (char of characters; track char.name) {
+            <div class="card tw-bg-primary">
+              <div>
+                <h3 class="tw-text-center tw-mb-10">{{ char.name }}</h3>
+                <p class="tw-mb-10">{{ char.description }}</p>
+                <div>Gender: {{ char.gender }}</div>
+                <div>Height: {{ char.height }}</div>
+                <div>Mass: {{ char.mass }}</div>
+                <div>Hair color: {{ char.hair_color }}</div>
+                <div>Skin color: {{ char.skin_color }}</div>
+                <div>Eye color: {{ char.eye_color }}</div>
+              </div>
+
+              @defer (on viewport) {
+                <app-home-world
+                  class="tw-mt-20 tw-flex tw-flex-col card tw-p-10 tw-bg-secondary"
+                  [url]="char.homeworld"></app-home-world>
+              } @placeholder (minimum 0) {
+                <div></div>
+                <!--                <div class="tw-mt-20 tw-font-semibold">loading planet...</div>-->
+              }
+            </div>
+          } @empty {
+            <!--            not used because it is grid in 3 columns here-->
+          }
+        </div>
+      } @else {
+        <div class="tw-text-center">No data available</div>
+      }
+    } @else {
+      <div>Initial Loading...</div>
+    }
+  }
+
+  @if (!searchMode) {
+    <app-refresh-button
+      class="tw-mt-50"
+      (onRefresh)="refresh()"></app-refresh-button>
+  }
+</section>
+
+@if (!searchMode) {
+  <app-pagination
+    [totalPages]="totalPages"
+    [currentPage]="currentPage"
+    (onPageNavigation)="navigate($event)"></app-pagination>
+}
