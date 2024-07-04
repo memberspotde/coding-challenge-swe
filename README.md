@@ -50,6 +50,7 @@
 - Instead of eager loading characters asynchronously, deferred loading it. Separate it from paginated list entity, create another feature store to store characters. Use defer block on viewport to fetch the detail of each character.
 - Data freshness button for homeworld as well, not just only paginated list and characters.
 - Alternatively, auto data freshness for current page. Auto fetching paginated list, characters and homeworld after some time, e.g. 10 minutes.
+- Cache search result in the store.
 
 ## Some thoughts
 - There are quite some methodologies implementing pagination list => lazy/eager loading and/or cached/non-cached
