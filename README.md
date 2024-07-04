@@ -59,4 +59,5 @@
 - Considering eager loading if the list is small. 
 - For a list with rather static data, use lazy loading + cached. When retrieving a new paginated page(next/prev) or forcing data freshness, if the total_records value changes(create, delete, restore operations), reset the store and cache new data.
 - For dynamic data, where data is frequently updated in the database, lazy loading the list without caching. May consider using angular material paginator and table retrieving data through HTTP.
+- Alternatively, may use websocket to handle dynamic data.
 
