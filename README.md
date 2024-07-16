@@ -55,8 +55,8 @@
 ## Some thoughts
 - There are quite some methodologies implementing pagination list => lazy/eager loading and/or cached/non-cached
 - Depending on the size of the list and how frequent the data is changed (CRUD, especially create and delete)
-- Issue scenario: user retrieved first page where data is ordered by descending date. Data is cached. A new item is created in database. The second page is then retrieved, the first element on the second page is the same as the last element of the first page.    
-- Considering eager loading if the list is small. 
+- Considering eager loading if the list is small.
+- Issue scenario: user retrieved first page where data is ordered by descending date. Data is cached. A new item is created in database. The second page is then retrieved, the first element on the second page is the same as the last element of the first page.
 - For a list with rather static data, use lazy loading + cached. When retrieving a new paginated page(next/prev) or forcing data freshness, if the total_records value changes(create, delete, restore operations), reset the store and cache new data.
 - For dynamic data, where data is frequently updated in the database, lazy loading the list without caching. May consider using angular material paginator and table retrieving data through HTTP.
 - Alternatively, may use websocket to handle dynamic data.
