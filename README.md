@@ -85,3 +85,5 @@ After running these scripts, the application should be accessible in your browse
 Strict Mode: TypeScript's strict mode is enabled to ensure comprehensive type-checking and reduce runtime errors. This includes options like strictNullChecks, noImplicitAny, and strictPropertyInitialization.
 
 Performance: The application is designed to be functional and visually appealing, with performance considerations taken into account. Feedback on optimization and best practices is appreciated.
+
+Time Constraints: Due to time limitations, the setup is currently quite basic, and there hasn't been much focus on advanced styling. The primary goal was to demonstrate core functionalities and design principles. Future improvements could include enhanced styling and more advanced features.
