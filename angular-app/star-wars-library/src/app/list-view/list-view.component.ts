@@ -17,7 +17,7 @@ import { LoadingComponent } from '../loading/loading.component';
       }"
       class=" list-view grid grid-flow-row justify-center items-center w-full gap-8 py-8 "
     >
-      @for (character of characters; track character) {
+      @for (character of characters; track character.name) {
         <div class="character-grid-item">
           <div #trigger class="trigger w-0 h-0"></div>
           @defer (on viewport(trigger)) {
