@@ -19,7 +19,7 @@ import { HostBinding } from '@angular/core';
   template: `
     <app-card-header
       [name]="character.name"
-      subtitle="Subtitle Text"
+      [subtitle]="'Homeworld: ' + character.homeworldData"
       class="flex-none"
     ></app-card-header>
 
