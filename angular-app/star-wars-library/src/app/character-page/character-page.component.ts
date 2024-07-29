@@ -21,7 +21,7 @@ import {
   distinctUntilChanged,
   switchMap,
 } from 'rxjs/operators';
-import { BehaviorSubject, of, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, of, throwError, timer } from 'rxjs';
 
 @Component({
   selector: 'app-characters',
@@ -46,14 +46,19 @@ import { BehaviorSubject, of, throwError } from 'rxjs';
     @defer (on idle) {
       @defer (when (isLoading==false)) {
         <app-search-bar
+          class="fade-in"
           (search)="onSearch($event)"
           (searchQueryChange)="onSearchQueryChange($event)"
         ></app-search-bar>
         @if (totalItems == 0) {
-          <app-no-character-found />
+          <app-no-character-found class="fade-in" />
         } @else {
-          <app-list-view [characters]="characters"></app-list-view>
+          <app-list-view
+            class="fade-in"
+            [characters]="characters"
+          ></app-list-view>
           <app-pagination
+            class="fade-in"
             [totalItems]="totalItems"
             [itemsPerPage]="itemsPerPage"
             [currentPage]="currentPage"
@@ -76,6 +81,8 @@ import { BehaviorSubject, of, throwError } from 'rxjs';
         </div>
       } @loading {
         <app-loading-anim />
+      } @error {
+        Error with the Request, waited for swapi to long
       }
     } @loading {
       <app-loading-anim />
@@ -155,6 +162,16 @@ import { BehaviorSubject, of, throwError } from 'rxjs';
       .limit-per-page input[type='number']:focus {
         border-color: #007bff;
       }
+
+      //fade
+      .fade-in {
+        opacity: 0;
+        animation: fadeIn 0.5s forwards;
+      }
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
     `,
   ],
 })
@@ -180,7 +197,7 @@ export class CharacterPageComponent {
           this.isLoading = true;
           this.error = null;
           this.searchQuery = query;
-          return this.fetchCharacters();
+          return this.fetchCharacters(4, 1000);
         }),
       )
       .subscribe({
@@ -210,11 +227,13 @@ export class CharacterPageComponent {
   onSearchQueryChange(query: string): void {
     if (this.searchQuery !== query) {
       this.searchSubject.next(query);
+      this.currentPage = 1; //search will trigger new pagination
     }
   }
 
-  fetchCharacters() {
+  fetchCharacters(retries: number, delay: number): Observable<any> {
     const zeroBasedPage = this.currentPage - 1; // Convert to 0-based index
+    this.isLoading = true;
     let params: { [key: string]: any } = {
       pagination: true,
       page: zeroBasedPage,
@@ -231,18 +250,22 @@ export class CharacterPageComponent {
       }>('characters', params)
       .pipe(
         catchError((error) => {
-          console.error('Error fetching characters:', error);
-          this.error =
-            'Failed to fetch character data. Please try again later.';
-          this.isLoading = false;
-          return throwError(error);
+          if (retries > 0) {
+            // Retry after a delay
+            return timer(delay).pipe(() =>
+              this.fetchCharacters(retries - 1, delay * 2),
+            );
+          } else {
+            this.handleApiError(error);
+            return throwError(error);
+          }
         }),
       );
   }
 
   onPageChange(page: number): void {
     this.currentPage = page;
-    this.fetchCharacters().subscribe({
+    this.fetchCharacters(2, 500).subscribe({
       next: (data) => {
         this.rawSwapiData = data.results;
         this.totalItems = data.count;
@@ -261,7 +284,7 @@ export class CharacterPageComponent {
   onLimitChange(limit: number): void {
     this.itemsPerPage = limit;
     this.currentPage = 1; // Reset to first page
-    this.fetchCharacters().subscribe({
+    this.fetchCharacters(2, 500).subscribe({
       next: (data) => {
         this.rawSwapiData = data.results;
         this.totalItems = data.count;
@@ -283,5 +306,20 @@ export class CharacterPageComponent {
     const colorEnhancedData = enhanceCharacterDataWithColors(rawCharacterData);
     const enhancedData = enhanceCharacterDataWithImage(colorEnhancedData);
     return enhancedData;
+  }
+
+  private handleApiError(error: any): void {
+    console.error('Error fetching characters:', error);
+    if (error.status === 0) {
+      // Network error
+      this.error = 'Network error: Please check your internet connection.';
+    } else if (error.status >= 500) {
+      // Server error
+      this.error = 'Server error: Please try again later.';
+    } else {
+      // Other errors
+      this.error = 'An error occurred: Please try again.';
+    }
+    this.isLoading = false;
   }
 }
