@@ -210,6 +210,7 @@ export class CharacterPageComponent {
   onSearchQueryChange(query: string): void {
     if (this.searchQuery !== query) {
       this.searchSubject.next(query);
+      this.currentPage = 1; //search will trigger new pagination
     }
   }
 
