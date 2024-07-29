@@ -35,21 +35,27 @@ The challenge involves developing an application with the following requirements
 
 1. **Design and UI**
 
-   - **Character Cards**: The frontend features character cards with AI-generated images and color accents. This not only makes the interface more engaging but also showcases the integration of additional data and visual elements.
+- **Character Cards**: The frontend includes character cards with AI-generated images and color accents. This design choice was made to spice it up and have a litte fun along the challenge and to make the interface more engaging and to showcase the integration of additional data and visual elements.
 
-   - **Aggregated Data**: For simplicity, the frontend directly accesses the homeworld name from the character data without making an additional request to the `/planet` endpoint.
+- **Aggregated Data**: For simplicity, the frontend directly accesses the homeworld name from the character data without making an additional request to the `/planet` endpoint.
 
 2. **Pagination and Filtering**
 
-   - **Lazy Loading**: Implemented lazy loading to enhance performance by loading character cards only when they enter the viewport. This approach ensures a smoother user experience and reduces initial load time.
+- **Lazy Loading**: Angular’s `@defer` syntax was used to implement lazy loading, which improves performance by loading character cards only as they become visible in the viewport. A minimum loading time was added to emphasize this effect but can be adjusted or removed.
 
-   - **Filtering**: The frontend performs case-insensitive filtering on the data, allowing users to search and filter characters based on their names effectively.
+- **Filtering**: A case-insensitive filter was implemented to allow users to search and filter characters by name (inherent to swapi )
 
 3. **Performance Considerations**
 
    - **@defer Syntax**: Used Angular's `@defer` syntax to load character cards as they become visible. To emphasize this effect, a minimum loading time was added for the loader component. This can be adjusted or removed for faster loading.
 
    - **Learning and Feedback**: As a developer new to Angular and SaaS applications, the focus has been on functionality and user experience. Feedback on performance optimization and best practices is welcomed.
+
+## Development Environment
+
+Platform: This project was developed and tested on macOS. While it should work on other platforms, including Windows, there might be platform-specific issues that were not addressed.
+
+IDE Requirements: Basic development tools such as Node.js and npm must be installed. No specific IDE is required, but using an IDE with TypeScript support is recommended for a better development experience.
 
 ## Setup Instructions
 
@@ -83,8 +89,6 @@ After running these scripts, the application should be accessible in your browse
 
 ### Notes
 
-Strict Mode: TypeScript's strict mode is enabled to ensure comprehensive type-checking and reduce runtime errors. This includes options like strictNullChecks, noImplicitAny, and strictPropertyInitialization.
+Strict Mode: TypeScript's strict mode is enabled to ensure comprehensive type-checking and reduce runtime errors.
 
-Performance: The application is designed to be functional and visually appealing, with performance considerations taken into account. Feedback on optimization and best practices is appreciated.
-
-Time Constraints: Due to time limitations, the setup is currently quite basic, and there hasn't been much focus on advanced styling. The primary goal was to demonstrate core functionalities and design principles. Future improvements could include enhanced styling and more advanced features.
+Performance: The application was designed with functionality and user experience in mind. Due to time constraints, the setup is quite basic, and there has been limited focus on advanced styling. Future work could enhance the styling and introduce more features.

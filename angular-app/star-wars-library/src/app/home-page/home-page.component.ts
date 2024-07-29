@@ -93,13 +93,14 @@ export class HomePageComponent {
     <h3 class="text-xl font-semibold mb-1">Frontend</h3>
     <h4 class="text-lg font-semibold mb-1">Design and UI</h4>
     <ul class="list-disc list-inside mb-4">
-      <li><strong>Character Cards:</strong> The frontend features character cards with AI-generated images and color accents. This not only makes the interface more engaging but also showcases the integration of additional data and visual elements.</li>
+      <li><strong>Character Cards:</strong> The frontend includes character cards with AI-generated images and color accents. This design choice was made to spice it up and have a litte fun along the challenge and to make the interface more engaging and to showcase the integration of additional data and visual elements.
+</li>
       <li><strong>Aggregated Data:</strong> For simplicity, the frontend directly accesses the homeworld name from the character data without making an additional request to the /planet endpoint.</li>
     </ul>
     <h4 class="text-lg font-semibold mb-1">Pagination and Filtering</h4>
     <ul class="list-disc list-inside mb-4">
       <li><strong>Lazy Loading:</strong> Implemented lazy loading to enhance performance by loading character cards only when they enter the viewport. This approach ensures a smoother user experience and reduces initial load time.</li>
-      <li><strong>Filtering:</strong> The frontend performs case-insensitive filtering on the data, allowing users to search and filter characters based on their names effectively.</li>
+      <li><strong>Filtering:</strong> A case-insensitive filter was implemented to allow users to search and filter characters by name (inherent to swapi )</li>
     </ul>
     <h4 class="text-lg font-semibold mb-1">Performance Considerations</h4>
     <ul class="list-disc list-inside mb-4">
@@ -109,8 +110,8 @@ export class HomePageComponent {
     <h2 class="text-2xl font-semibold mb-2">Setup Instructions</h2>
     <ol class="list-decimal list-inside mb-4">
       <li><strong>Clone the Repository:</strong>
-        <pre class="bg-gray-100 p-2 rounded"><code>git clone &lt;repository-url&gt;
-cd &lt;repository-directory&gt;</code></pre>
+        <pre class="bg-gray-100 p-2 rounded"><code>    git clone https://github.com/Sebastian-Mueller-F/coding-challenge-swe.git
+    cd coding-challenge-swe </code></pre>
       </li>
       <li><strong>Install Dependencies:</strong>
         <pre class="bg-gray-100 p-2 rounded"><code>./setup.sh</code></pre>
@@ -121,8 +122,8 @@ cd &lt;repository-directory&gt;</code></pre>
     </ol>
     <h3 class="text-xl font-semibold mb-1">Notes</h3>
     <ul class="list-disc list-inside mb-4">
-      <li><strong>Strict Mode:</strong> TypeScript's strict mode is enabled to ensure comprehensive type-checking and reduce runtime errors. This includes options like strictNullChecks, noImplicitAny, and strictPropertyInitialization.</li>
-      <li><strong>Performance:</strong> The application is designed to be functional and visually appealing, with performance considerations taken into account. Feedback on optimization and best practices is appreciated.</li>
+      <li><strong>Strict Mode:</strong>TypeScript's strict mode is enabled to ensure comprehensive type-checking and reduce runtime errors.</li>
+      <li><strong>Performance:</strong> Performance: The application was designed with functionality and user experience in mind. Due to time constraints, the setup is quite basic, and there has been limited focus on advanced styling. Future work could enhance the styling and introduce more features.</li>
     </ul>
   `;
 }
