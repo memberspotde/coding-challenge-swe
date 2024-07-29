@@ -89,14 +89,14 @@ export class Route {
       ? Math.max(0, parseInt(params.page as string)) //TODO: change minimal page to  CONST
       : undefined;
     let limit = params.limit
-      ? Math.max(10, parseInt(params.limit as string)) //TODO change minimal limit to  CONST
+      ? Math.max(8, parseInt(params.limit as string)) //TODO change minimal limit to  CONST
       : undefined;
 
     if (!page) {
       page = 0;
     }
     if (!limit) {
-      limit = 10;
+      limit = 12;
     }
 
     return { pagination, page, limit };

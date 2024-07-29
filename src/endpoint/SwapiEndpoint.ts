@@ -1,15 +1,12 @@
 import { Endpoint } from "./interfaces";
-import { ApiMethod } from "./types";
+
 import axios, { all, AxiosRequestConfig } from "axios";
-import NodeCache from "node-cache";
+
 import { getCacheKey } from "./cache";
 import { RequestOptions } from "./interfaces";
-import { any } from "openapi-typescript-validator";
-import { startupSnapshot } from "v8";
-import { start } from "repl";
+
 import { SwapiEndpointError } from "../error";
 import { sharedCache } from "..";
-import { stringify } from "querystring";
 
 export class SwapiEndpoint implements Endpoint {
   baseUrl: string;
@@ -34,7 +31,7 @@ export class SwapiEndpoint implements Endpoint {
     //pagination
     this.pagination = options.pagination || false;
     this.appPage = options.appPage;
-    this.limitPerPage = options.limitPerPage ?? 10;
+    this.limitPerPage = options.limitPerPage ?? 12;
     //test
   }
 
@@ -116,7 +113,7 @@ export class SwapiEndpoint implements Endpoint {
         endPage
       );
       console.log("SE - Full fetched data");
-      const limitPerPage = this.limitPerPage ?? 10; //default to 10 per page
+      const limitPerPage = this.limitPerPage ?? 12; //default to 12 per page
       paginatedData = this.extractPaginatedData(
         dataExtendingThePage,
         startItemIndex,
@@ -261,7 +258,7 @@ export class SwapiEndpoint implements Endpoint {
   }
 
   private async fetchAndAggregateHomeworldData(data: any[]): Promise<any[]> {
-    // Map over the input data array to create an array of promises
+    //only the name of the hoemworld is directly fetched not any other data
     const homeworldRequests = data.map(async (character) => {
       try {
         const response = await axios.get(character.homeworld);
@@ -274,14 +271,14 @@ export class SwapiEndpoint implements Endpoint {
           `Error fetching homeworld data for ${character.name}`,
           error
         );
-        return character; // Return character without homeworld data if error occurs
+        return character;
       }
     });
 
-    // Await the completion of all promises and return the result
+    // await the completion of all promises and return the result
     const results = await Promise.all(homeworldRequests);
 
-    // Check if data aggregation worked
+    // ceck if data aggregation worked
     results.forEach((result, index) => {
       if (result.homeworldData) {
         console.log(

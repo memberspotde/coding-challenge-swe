@@ -68,6 +68,8 @@ import { BehaviorSubject, of, throwError } from 'rxjs';
           <input
             type="number"
             id="limit"
+            min="8"
+            max="40"
             [(ngModel)]="itemsPerPage"
             (change)="onLimitChange(itemsPerPage)"
           />
