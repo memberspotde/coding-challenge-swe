@@ -9,7 +9,6 @@ import { Component, Input } from '@angular/core';
         <h2 class="text-xl font-bold text-white">{{ name }}</h2>
         <p class="text-sm text-gray-200">{{ subtitle }}</p>
       </div>
-      <button class="text-white">+</button>
     </div>
   `,
   styles: [
