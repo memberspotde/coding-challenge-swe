@@ -22,8 +22,9 @@ import { LoadingComponent } from '../loading/loading.component';
           <div #trigger class="trigger w-0 h-0"></div>
           @defer (on viewport(trigger)) {
             <app-character-card [character]="character"></app-character-card>
-          } @placeholder (minimum 100ms) {
+          } @placeholder {
             <div></div>
+            <!-- ADD MINIMUM loading(minimum 300ms) ? -->
           } @loading {
             <app-loading-anim></app-loading-anim>
           }
