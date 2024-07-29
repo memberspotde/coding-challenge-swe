@@ -56,10 +56,11 @@ The challenge involves developing an application with the following requirements
 To set up and run the application, follow these steps:
 
 1.  **Clone the Repository**
+    Either by pulling it direclty or accepting the upstream pull request
 
     ```
-    git clone <repository-url>
-    cd <repository-directory>
+    git clone https://github.com/Sebastian-Mueller-F/coding-challenge-swe.git
+    cd coding-challenge-swe
     ```
 
 2.  **Install Dependencies**
