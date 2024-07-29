@@ -81,6 +81,8 @@ import { BehaviorSubject, Observable, of, throwError, timer } from 'rxjs';
         </div>
       } @loading {
         <app-loading-anim />
+      } @error {
+        Error with the Request, waited for swapi to long
       }
     } @loading {
       <app-loading-anim />
