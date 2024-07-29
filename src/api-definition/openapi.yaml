@@ -1,0 +1,78 @@
+openapi: 3.0.0
+info:
+  title: Star Wars Character API
+  version: 1.0.0
+  description: A simple Star Wars API
+servers:
+  - url: ${BASE_URL}
+paths:
+  /characters:
+    get:
+      summary: Get all characters
+      parameters:
+        - in: query
+          name: search
+          type: string
+          required: false
+          description: Searching for characters
+        - in: query
+          name: pagination
+          type: string
+          required: false
+          description: boolean for checking if pagination is required
+        - in: query
+          name: page
+          type: string
+          required: false
+          description: the current request page view
+        - in: query
+          name: limit
+          type: string
+          required: false
+          description: the limit of items per page
+      responses:
+        "200":
+          description: A list of Star Wars characters
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Character"
+  /characters/{id}:
+    get:
+      summary: Get a character by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: A single Star Wars character
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Character"
+components:
+  schemas:
+    Character:
+      type: object
+      properties:
+        name:
+          type: string
+        height:
+          type: string
+        mass:
+          type: string
+        hair_color:
+          type: string
+        skin_color:
+          type: string
+        eye_color:
+          type: string
+        birth_year:
+          type: string
+        gender:
+          type: string
