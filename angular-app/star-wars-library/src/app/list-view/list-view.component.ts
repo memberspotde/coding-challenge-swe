@@ -21,7 +21,10 @@ import { LoadingComponent } from '../loading/loading.component';
         <div class="character-grid-item">
           <div #trigger class="trigger w-0 h-0"></div>
           @defer (on viewport(trigger)) {
-            <app-character-card [character]="character"></app-character-card>
+            <app-character-card
+              class="fade-in"
+              [character]="character"
+            ></app-character-card>
           } @placeholder {
             <div></div>
             <!-- ADD MINIMUM loading(minimum 300ms) ? -->
@@ -46,6 +49,15 @@ import { LoadingComponent } from '../loading/loading.component';
       .trigger {
         pointer-events: none; /* Ensure the trigger doesn't interfere with user interaction */
       }
+
+      .fade-in {
+        opacity: 0;
+        animation: fadeIn 0.5s forwards;
+      }
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
     `,
   ],
 })

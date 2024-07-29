@@ -46,14 +46,19 @@ import { BehaviorSubject, Observable, of, throwError, timer } from 'rxjs';
     @defer (on idle) {
       @defer (when (isLoading==false)) {
         <app-search-bar
+          class="fade-in"
           (search)="onSearch($event)"
           (searchQueryChange)="onSearchQueryChange($event)"
         ></app-search-bar>
         @if (totalItems == 0) {
-          <app-no-character-found />
+          <app-no-character-found class="fade-in" />
         } @else {
-          <app-list-view [characters]="characters"></app-list-view>
+          <app-list-view
+            class="fade-in"
+            [characters]="characters"
+          ></app-list-view>
           <app-pagination
+            class="fade-in"
             [totalItems]="totalItems"
             [itemsPerPage]="itemsPerPage"
             [currentPage]="currentPage"
@@ -155,6 +160,16 @@ import { BehaviorSubject, Observable, of, throwError, timer } from 'rxjs';
       .limit-per-page input[type='number']:focus {
         border-color: #007bff;
       }
+
+      //fade
+      .fade-in {
+        opacity: 0;
+        animation: fadeIn 0.5s forwards;
+      }
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
     `,
   ],
 })
