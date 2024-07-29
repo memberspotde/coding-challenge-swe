@@ -231,6 +231,7 @@ export class CharacterPageComponent {
 
   fetchCharacters(retries: number, delay: number): Observable<any> {
     const zeroBasedPage = this.currentPage - 1; // Convert to 0-based index
+    this.isLoading = true;
     let params: { [key: string]: any } = {
       pagination: true,
       page: zeroBasedPage,
