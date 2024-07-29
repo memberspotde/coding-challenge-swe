@@ -44,7 +44,7 @@ import { BehaviorSubject, of, throwError } from 'rxjs';
       <p>You can search the characters by name.</p>
     </div>
     @defer (on idle) {
-      @defer (when (isLoading==true)) {
+      @defer (when (isLoading==false)) {
         <app-search-bar
           (search)="onSearch($event)"
           (searchQueryChange)="onSearchQueryChange($event)"
